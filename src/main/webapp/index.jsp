@@ -7,6 +7,23 @@
   </head>
   <body>
     <h1>Hello !!!</h1>
+    <form action="${pageContext.request.contextPath}/index" method="POST">
+      <label>
+        Divider
+        <input class="form-control" type="number" min="2" required>
+      </label>
+      <label>
+        Value
+        <input class="form-control" type="radio" name="value" value="Positive">Positive
+        <input class="form-control" type="radio" name="value" value="Negative">Negative
+      </label>
+      <label>
+        Bounds
+        <input class="form-control" type="number" name="minValue"> -
+        <input class="form-control" type="number" name="maxValue">
+      </label>
+      <input class="form-control" type="submit" value="Submit" />
+    </form>
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
   </body>
