@@ -1,43 +1,110 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-      <title>index</title>
-      <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-      <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
-        <script>
-      <%@ include file="/js/glory.js" %>
-      </script>
+    <title>index</title>
+      <link rel="stylesheet" href="styles/main.css">
+      <style>
+          <%@ include file="/node_modules/bootstrap/dist/css/bootstrap.css"%>
+          <%@ include file="/styles/main.css"%>
+      </style>
+    <script>
+        <%@ include file="/js/glory.js" %>
+    </script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/glory.js"></script>
   </head>
   <body>
-  <div class="row" style="margin-top:100px;margin-left:250px;position:relative">
+  <div class="row">
     <div class="col-sm-4">
-      <form action="${pageContext.request.contextPath}/index" method="POST">
+      <form action="${pageContext.request.contextPath}/index" method="POST" class="myForm">
+          <div class="col-sm-12">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label for="divider">
+                          Divider:
+                      </label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input name="divider" id="divider" type="number" required class="form-control">
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-12 row">
+              <div class="col-sm-3">
+                  <label>
+                      Positive
+                  </label>
+              </div>
+              <div class="col-sm-3">
+                  <input  type="radio" id="positive" name="value" value="Positive" required class="form-control">
+              </div>
+              <div class="col-sm-3">
+                  <label>
+                      Negative
+                  </label>
+              </div>
+              <div class="col-sm-3">
+                  <input  type="radio" id="negative" name="value" value="Negative" required class="form-control">
+              </div>
+          </div>
         <label>
-        <span style="font-size:18px;font-family:cursive">  Divider </span>
-          <input id="divider" style="font-size: 16px;margin-left:10px;border:none;border-bottom: 1px solid lightgray" type="number" min="2" required>
-        </label><br/>
-        <label>
-          <span style="font-size:18px;font-family:cursive">Value</span>
-          <input  type="checkbox" id="positive" style="font-size: 16px;margin-left:20px;border:none;border-bottom: 1px solid lightgray" name="value" value="Positive">Positive
-          <input  type="checkbox" id="negative" style="font-size: 16px;margin-left:10px;border:none;border-bottom: 1px solid lightgray" name="value" value="Negative">Negative <br/>
+            <div class="row">
+                <div class="col-sm-2">
+                    Bounds
+                </div>
+                <div class="col-sm-5">
+                    <input id="min" type="number" name="minValue" required class="form-control">
+                </div>
+                <div class="col-sm-5">
+                    <input id="max" type="number" name="maxValue" required class="form-control">
+                </div>
+            </div>
         </label>
-        <label>
-         <span style="font-size:18px;font-family:cursive"> Bounds </span>
-          <input id="min" style="font-size: 16px;margin-left:10px;border:none;border-bottom: 1px solid lightgray" type="number" name="minValue" required> -
-          <input id="max" min="min" style="font-size: 16px;margin-left:10px;border:none;border-bottom: 1px solid lightgray" type="number" name="maxValue" required> <br/>
-        </label><br/>
-        <input type="text" id="allIn" hidden>
-        Введите число :
-        <input type="number" style="font-size: 16px;margin-left:10px;border:none;border-bottom: 1px solid lightgray" id="number"> <br/>
-        <input style="margin-top:15px;width: 400px;height:20px;background-color:coral;color:white;border-radius: 10px;border:none" type="submit" value="Отправить" />
+          <div class="row">
+              <div class="col-sm-4">
+                  Numbers:
+              </div>
+              <div class="col-sm-8">
+                  <input type="text" name="numbers" id="allIn" class="form-control">
+              </div>
+          </div>
+        <input class="form-control btn btn-success" type="submit" value="Отправить" />
       </form>
-      <button style="width: 400px;height:20px;background-color:forestgreen;color:white;border-radius: 10px;border:none;" onclick="add()">Добавить</button>
+        <div class="row col-sm-12 input-number-div">
+            <label for="number">
+                <div class="row">
+                    <div class="col-sm-2">
+                        Введите число :
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="number" id="number" class="form-control">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="form-control btn btn-primary" onclick="add()">Добавить</button>
+                    </div>
+                </div>
+            </label>
+        </div>
 
   </div>
-    <div class="col-sm-8">
-
+    <div class="col-sm-6">
+      <table>
+        <thead>
+        <tr>
+          <td>Number</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            ${list}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-danger">
+        ${error}
+      </div>
     </div>
   </div>
     <script src="node_modules/jquery/dist/jquery.js"></script>

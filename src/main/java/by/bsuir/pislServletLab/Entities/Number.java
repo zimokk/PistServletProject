@@ -23,6 +23,6 @@ public class Number {
     }
 
     public boolean isBelong(double firstBound, double secondBound){
-        return this.value < firstBound && this.value < secondBound;
+        return this.value > firstBound && this.value < secondBound;
     }
 }

@@ -23,19 +23,49 @@ public class ServletClass extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        int divider = Integer.parseInt(req.getParameter("divider"));
-        boolean isPositive = req.getParameter("value").equals("Positive");
-        double minValue = Double.parseDouble(req.getParameter("minValue"));
-        double maxValue = Double.parseDouble(req.getParameter("maxValue"));
-        String numbers = req.getParameter("numbers");
-        double[] array = new double[numbers.length()];
-
-        int i = 0;
-        for(String item : numbers.split(",")){
-            array[i++] = Double.parseDouble(item);
+        boolean isPositive = false;
+        int divider = 0;
+        double maxValue = 0, minValue = 0;
+        if(req.getParameter("divider") != null){
+            divider = Integer.parseInt(req.getParameter("divider"));
         }
-        List<Double> list = new Comparator(array,minValue,maxValue,divider,isPositive).compare();
-        req.setAttribute("list",list);
+        if(req.getParameter("value") != null){
+            isPositive = req.getParameter("value").equals("Positive");
+        }
+        if(req.getParameter("minValue") != null){
+            minValue = Double.parseDouble(req.getParameter("minValue"));
+        }
+        if(req.getParameter("maxValue") != null){
+            maxValue = Double.parseDouble(req.getParameter("maxValue"));
+        }
+
+        String numbers = req.getParameter("numbers");
+        if(numbers.split(",").length > 0){
+            double[] array = new double[numbers.split(",").length];
+
+            int i = 0;
+            for(String item : numbers.split(",")){
+                try {
+                    array[i++] = Double.parseDouble(item);
+                }
+                catch (Exception ex){
+                    array = null;
+                }
+            }
+            if(array == null){
+                req.setAttribute("error","Error occurred during numbers input");
+            }else{
+                if(minValue > maxValue){
+                    req.setAttribute("error","Error occurred during bounds input");
+                }
+                else {
+                    List<Double> list = new Comparator(array,minValue,maxValue,divider,isPositive).compare();
+                    req.setAttribute("list",list);
+                }
+            }
+        }else{
+            req.setAttribute("error","You didn't enter numbers");
+        }
 
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
