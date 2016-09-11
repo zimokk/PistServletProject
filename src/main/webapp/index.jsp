@@ -102,9 +102,9 @@
         </tr>
         </tbody>
       </table>
-      <div class="alert alert-danger">
-        ${error}
-      </div>
+    </div>
+    <div class="alert alert-danger">
+      ${error}
     </div>
   </div>
     <script src="node_modules/jquery/dist/jquery.js"></script>

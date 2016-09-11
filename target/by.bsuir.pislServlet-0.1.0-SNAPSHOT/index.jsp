@@ -87,11 +87,11 @@
         </div>
 
   </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 alert alert-success">
       <table>
         <thead>
         <tr>
-          <td>Number</td>
+          <td>Result</td>
         </tr>
         </thead>
         <tbody>
