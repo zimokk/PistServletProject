@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PislServlet:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="by.bsuir.pislServlet-0.1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="PislServlet:war exploded" />
+    </root>
+  </artifact>
+</component>
