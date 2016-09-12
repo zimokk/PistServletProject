@@ -74,10 +74,10 @@
             <label for="number">
                 <div class="row">
                     <div class="col-sm-2">
-                        Введите число :
+                        Введите число:
                     </div>
                     <div class="col-sm-6">
-                        <input type="number" id="number" class="form-control">
+                        <input type="number" id="number" class="form-control" onclick="(this.value= '')">
                     </div>
                     <div class="col-sm-4">
                         <button class="form-control btn btn-primary" onclick="add()">Добавить</button>
